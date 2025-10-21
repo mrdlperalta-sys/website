@@ -1,0 +1,631 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ECORN Cement — Eco-Friendly & High-Quality Cement</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    :root{
+      --brand:#0f7a4a;
+      --muted:#556069;
+      --card:#ffffffcc;
+    }
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.04), transparent 10%),
+        linear-gradient(180deg,#eafaf1 0%, #f7fff9 40%, #f9fff8 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .leaf-bg{
+      background-image:
+        linear-gradient(180deg, rgba(15,122,74,0.04), rgba(15,122,74,0.03)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' fill-rule='evenodd' opacity='0.06'%3E%3Cpath d='M50 400c0-150 100-220 200-220s200 70 200 220-100 220-200 220S50 550 50 400z' fill='%230f7a4a'/%3E%3Cpath d='M300 200c60-40 140-30 200 0' stroke='%230f7a4a' stroke-width='4' stroke-opacity='0.04'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right top;
+      background-size:40%;
+    }
+    .brand-g{ color:var(--brand); }
+    .muted{ color:var(--muted); }
+    .card{ background:var(--card); backdrop-filter: blur(6px); border:1px solid rgba(15,122,74,0.06); }
+    .tab-active{ border-bottom:3px solid var(--brand); color:var(--brand); font-weight:600; }
+    @media print{ .no-print{ display:none !important; } }
+  </style>
+</head>
+<body class="leaf-bg">
+
+  <!-- Header -->
+  <header class="no-print sticky top-0 z-40 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <img src="./ecorn-logo.png" alt="ECORN Logo" style="height:48px; width:auto; object-fit:contain;">
+        <div>
+          <div class="text-lg font-bold brand-g">ECORN Cement Manufacturing Corporation</div>
+          <div class="text-sm muted">Eco-Friendly and High-Quality Cement</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex gap-3 text-sm">
+          <button id="tab-store" class="px-3 py-2 rounded hover:bg-green-50 tab-active">Store</button>
+          <button id="tab-orders" class="px-3 py-2 rounded hover:bg-green-50">My Orders</button>
+        </nav>
+
+        <div class="text-sm muted hidden md:block">
+          📧 <a href="mailto:ecocement@gmail.com" class="underline">ecocement@gmail.com</a> • 📞 <a href="tel:09911234567" class="underline">0991 123 4567</a>
+        </div>
+
+        <button id="openOrderBtn" class="px-4 py-2 rounded bg-green-700 text-white hover:shadow-lg">Order Online</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main container -->
+  <main class="max-w-7xl mx-auto px-6 py-10">
+
+    <!-- STORE SECTION -->
+    <section id="storeSection" class="card rounded-2xl p-8 shadow-lg">
+      <div class="md:flex md:items-center md:gap-8">
+        <div class="flex-1">
+          <h1 class="text-4xl font-extrabold brand-g leading-tight">Eco-Friendly and High-Quality Cement</h1>
+          <p class="mt-4 muted max-w-2xl">
+            ECORN blends carefully processed Corn Cob Ash (CCA) as a partial replacement for cement to reduce environmental impact while maintaining the strength and workability required in modern construction. We test every batch to ensure consistent quality — for homes, roads, and commercial projects.
+          </p>
+
+          <div class="mt-6 flex gap-3">
+            <button id="ctaOrder" class="px-6 py-3 rounded bg-green-700 text-white font-semibold">Order Now</button>
+            <a href="#story" class="px-6 py-3 rounded border border-green-700 text-green-700">Our Story</a>
+          </div>
+        </div>
+
+        <div class="mt-6 md:mt-0 md:w-96">
+          <div class="rounded-xl bg-white shadow p-4">
+            <div class="text-sm muted">Featured</div>
+            <h3 class="text-xl font-bold brand-g mt-2">ECORN Eco Cement</h3>
+            <div class="mt-3 muted">
+              <div>• With CCA — <strong>₱250 / 40kg</strong> · <strong>₱300 / 50kg</strong></div>
+              <div class="mt-1">• No CCA — <strong>₱280 / 40kg</strong> · <strong>₱330 / 50kg</strong></div>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-2">
+              <button id="orderEcoNow" class="px-3 py-2 rounded bg-green-700 text-white">Order Eco</button>
+              <button id="orderStdNow" class="px-3 py-2 rounded border border-gray-300 text-gray-800">Order Standard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section id="story" class="mt-8">
+      <div class="card rounded-lg p-6 shadow-sm">
+        <div class="md:flex md:gap-6">
+          <div class="md:w-2/3">
+            <h2 class="text-2xl font-bold brand-g">Our Eco Cement Story</h2>
+            <p class="mt-3 muted">
+              ECORN started with a mission to reduce waste and carbon emissions from construction. By converting corn cob waste into a pozzolanic ash (CCA) and blending it into our cement, we lower the embodied carbon per bag while retaining the performance contractors expect. Each batch undergoes quality checks to ensure workability, strength, and durability.
+            </p>
+            <p class="mt-3 muted">
+              We support local agriculture, reduce landfill waste, and offer a cost-effective alternative for builders who care about sustainability without compromising quality.
+            </p>
+          </div>
+
+          <div class="md:w-1/3 mt-4 md:mt-0">
+            <div class="rounded-lg p-4 bg-white shadow">
+              <div class="text-sm muted">Benefits</div>
+              <ul class="mt-3 text-sm muted space-y-1">
+                <li>• Lower embodied carbon</li>
+                <li>• Affordable pricing</li>
+                <li>• Reliable strength & durability</li>
+                <li>• Locally sourced materials</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold brand-g">Products</h2>
+      <p class="muted mt-1">Choose your product and place an order — upload payment proof for GCash/PayMaya if applicable.</p>
+
+      <div class="grid md:grid-cols-4 gap-6 mt-4">
+        <!-- Eco 40 -->
+        <div class="card p-4 rounded-lg shadow">
+          <div class="text-sm muted">ECORN Eco Cement</div>
+          <div class="font-bold text-xl brand-g mt-1">₱250 <span class="text-sm muted">/ 40kg</span></div>
+          <div class="mt-2 text-sm muted">Includes Corn Cob Ash (CCA)</div>
+          <div class="mt-4 flex gap-2">
+            <button class="px-3 py-2 bg-green-700 text-white rounded w-full" onclick="quickOrder('ECORN Eco Cement (40kg) - 250')">Order</button>
+          </div>
+        </div>
+
+        <!-- Eco 50 -->
+        <div class="card p-4 rounded-lg shadow">
+          <div class="text-sm muted">ECORN Eco Cement</div>
+          <div class="font-bold text-xl brand-g mt-1">₱300 <span class="text-sm muted">/ 50kg</span></div>
+          <div class="mt-2 text-sm muted">Higher bag weight</div>
+          <div class="mt-4">
+            <button class="px-3 py-2 bg-green-700 text-white rounded w-full" onclick="quickOrder('ECORN Eco Cement (50kg) - 300')">Order</button>
+          </div>
+        </div>
+
+        <!-- Std 40 -->
+        <div class="card p-4 rounded-lg shadow">
+          <div class="text-sm muted">ECORN Standard Cement</div>
+          <div class="font-bold text-xl brand-g mt-1">₱280 <span class="text-sm muted">/ 40kg</span></div>
+          <div class="mt-2 text-sm muted">No CCA additive</div>
+          <div class="mt-4">
+            <button class="px-3 py-2 bg-green-700 text-white rounded w-full" onclick="quickOrder('ECORN Standard Cement (40kg) - 280')">Order</button>
+          </div>
+        </div>
+
+        <!-- Std 50 -->
+        <div class="card p-4 rounded-lg shadow">
+          <div class="text-sm muted">ECORN Standard Cement</div>
+          <div class="font-bold text-xl brand-g mt-1">₱330 <span class="text-sm muted">/ 50kg</span></div>
+          <div class="mt-2 text-sm muted">Classic blend</div>
+          <div class="mt-4">
+            <button class="px-3 py-2 bg-green-700 text-white rounded w-full" onclick="quickOrder('ECORN Standard Cement (50kg) - 330')">Order</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Order Modal -->
+  <div id="orderModal" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50 no-print">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl p-6">
+      <div class="flex items-start justify-between">
+        <h3 class="text-lg font-semibold brand-g">Place Order</h3>
+        <button id="closeOrderModal" class="text-sm muted">Close</button>
+      </div>
+
+      <div class="mt-4 grid gap-3">
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label class="text-sm muted">Full name</label>
+            <input id="ord_name" class="w-full px-3 py-2 border rounded" placeholder="Your full name">
+          </div>
+          <div>
+            <label class="text-sm muted">Email</label>
+            <input id="ord_email" class="w-full px-3 py-2 border rounded" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label class="text-sm muted">Product</label>
+            <select id="ord_product" class="w-full px-3 py-2 border rounded">
+              <option value="">-- choose product --</option>
+              <option value="ECORN Eco Cement (40kg) - 250">ECORN Eco Cement (40kg) — ₱250</option>
+              <option value="ECORN Eco Cement (50kg) - 300">ECORN Eco Cement (50kg) — ₱300</option>
+              <option value="ECORN Standard Cement (40kg) - 280">ECORN Standard Cement (40kg) — ₱280</option>
+              <option value="ECORN Standard Cement (50kg) - 330">ECORN Standard Cement (50kg) — ₱330</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm muted">Quantity (bags)</label>
+            <input id="ord_qty" type="number" min="1" value="1" class="w-full px-3 py-2 border rounded">
+          </div>
+        </div>
+
+        <div id="ccaRow">
+          <label class="text-sm muted">CCA % Replacement (5–15%)</label>
+          <select id="ord_cca" class="w-full px-3 py-2 border rounded">
+            <option value="5">5%</option>
+            <option value="6">6%</option>
+            <option value="7">7%</option>
+            <option value="8" selected>8%</option>
+            <option value="9">9%</option>
+            <option value="10">10%</option>
+            <option value="11">11%</option>
+            <option value="12">12%</option>
+            <option value="13">13%</option>
+            <option value="14">14%</option>
+            <option value="15">15%</option>
+          </select>
+          <p class="text-xs text-green-700 mt-1">Use only <strong>5–10% CCA</strong> by cement weight for Eco Cement mixtures.</p>
+        </div>
+
+        <div>
+          <label class="text-sm muted">Delivery address</label>
+          <textarea id="ord_address" rows="2" class="w-full px-3 py-2 border rounded" placeholder="Delivery address..."></textarea>
+        </div>
+
+        <div>
+          <label class="text-sm muted">Payment method</label>
+          <select id="ord_payment" class="w-full px-3 py-2 border rounded">
+            <option value="">-- select payment method --</option>
+            <option value="Cash Payment">Cash Payment (store / over-the-counter)</option>
+            <option value="GCash">GCash — 0991 123 4567 (Maridel Peralta)</option>
+            <option value="PayMaya">PayMaya — 0991 123 4567</option>
+            <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+          </select>
+          <div id="payment_instructions" class="mt-2 text-sm muted"></div>
+        </div>
+
+        <div>
+          <label class="block text-sm muted">📷 Upload Payment Proof (optional)</label>
+          <input type="file" id="ord_proof" accept="image/*" class="mt-1">
+          <img id="ord_proof_preview" class="hidden mt-2 rounded border max-h-48" />
+        </div>
+
+        <div class="flex justify-end gap-3 mt-3">
+          <button id="ord_bulk" class="px-4 py-2 rounded border">Request Bulk Quote</button>
+          <button id="ord_preview" class="px-4 py-2 rounded bg-green-700 text-white">Preview & Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirmModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-60 no-print">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6">
+      <h3 class="text-lg font-semibold brand-g">Confirm Your Order</h3>
+      <div id="confirmDetails" class="mt-3 text-sm muted"></div>
+      <div class="mt-4 flex justify-end gap-3">
+        <button id="confirmCancel" class="px-4 py-2 rounded border">Edit</button>
+        <button id="confirmSend" class="px-4 py-2 rounded bg-green-700 text-white">Send Order & Email Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-70 no-print">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-sm p-6">
+      <h3 class="text-lg font-semibold brand-g">Order Submitted</h3>
+      <p id="successMessage" class="mt-2 muted"></p>
+      <div class="mt-4 text-right">
+        <button id="successClose" class="px-4 py-2 rounded bg-green-700 text-white">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Orders Section (tab) -->
+  <section id="myOrdersSection" class="max-w-7xl mx-auto px-6 py-10 hidden">
+    <div class="card rounded-lg p-6 shadow">
+      <h2 class="text-2xl font-bold brand-g">My Orders</h2>
+      <p class="muted mt-1">Orders placed from this browser. Open printable receipts anytime.</p>
+      <div id="myOrdersList" class="mt-4 space-y-4"></div>
+    </div>
+  </section>
+
+  <footer class="mt-12 py-8 text-center muted">
+    © 2025 ECORN Cement Manufacturing Corporation — Bacnit, Mabini, Pangasinan • 0991 123 4567 • ecocement@gmail.com
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+ /* ===========================
+   CONFIG — FIXED VERSION
+   =========================== */
+emailjs.init("skalyYoOvcYy9JMTi"); // ✅ your public key
+const SERVICE_ID = "service_q4rq4mn";     // ✅ remove “public_”
+const CUSTOMER_TEMPLATE_ID = "template_87r41lr"; 
+const SELLER_TEMPLATE_ID = "template_r5ruf5r";
+const SELLER_EMAIL = "ecocement@gmail.com";
+
+
+  /* ===========================
+     DOM helpers
+     =========================== */
+  const $ = id => document.getElementById(id);
+
+  // Tabs
+  const tabStore = $('tab-store'), tabOrders = $('tab-orders');
+  const storeSection = $('storeSection'), myOrdersSection = $('myOrdersSection');
+  tabStore?.addEventListener('click', ()=>{ tabStore.classList.add('tab-active'); tabOrders.classList.remove('tab-active'); storeSection.classList.remove('hidden'); myOrdersSection.classList.add('hidden'); });
+  tabOrders?.addEventListener('click', ()=>{ tabOrders.classList.add('tab-active'); tabStore.classList.remove('tab-active'); storeSection.classList.add('hidden'); myOrdersSection.classList.remove('hidden'); loadMyOrders(); });
+
+  // Open modal
+  const orderModal = $('orderModal');
+  function openOrderModal(pref='') {
+    orderModal.classList.remove('hidden');
+    orderModal.classList.add('flex');
+    if(pref){
+      const sel = $('ord_product');
+      for(let i=0;i<sel.options.length;i++){
+        if(sel.options[i].value.includes(pref)){ sel.selectedIndex = i; break; }
+      }
+      toggleCCA();
+    }
+  }
+  $('openOrderBtn').addEventListener('click', ()=> openOrderModal());
+  $('ctaOrder')?.addEventListener('click', ()=> openOrderModal());
+  $('orderEcoNow')?.addEventListener('click', ()=> openOrderModal('Eco Cement'));
+  $('orderStdNow')?.addEventListener('click', ()=> openOrderModal('Standard Cement'));
+  $('closeOrderModal').addEventListener('click', ()=> orderModal.classList.add('hidden'));
+
+  // Quick order global
+  function quickOrder(val){
+    openOrderModal();
+    const sel = $('ord_product');
+    for(let i=0;i<sel.options.length;i++){ if(sel.options[i].value === val) { sel.selectedIndex = i; break; } }
+    toggleCCA();
+  }
+  window.quickOrder = quickOrder;
+
+  // Toggle CCA visibility
+  function toggleCCA(){
+    const val = $('ord_product').value || '';
+    const ccaRow = $('ccaRow');
+    if(val.includes('Eco Cement')){
+      ccaRow.style.display = 'block';
+    } else {
+      ccaRow.style.display = 'none';
+    }
+  }
+  $('ord_product').addEventListener('change', toggleCCA);
+  // initial toggle
+  toggleCCA();
+
+  // Payment instructions
+  $('ord_payment').addEventListener('change', e=>{
+    const v = e.target.value;
+    const info = $('payment_instructions');
+    if(!v) info.innerHTML = '';
+    else if(v === 'GCash') info.innerHTML = `<strong>GCash</strong>: Send to <strong>0991 123 4567</strong> (Acct: <strong>Maridel Peralta</strong>) and upload proof.`;
+    else if(v === 'PayMaya') info.innerHTML = `<strong>PayMaya</strong>: Send to <strong>0991 123 4567</strong> and upload proof.`;
+    else if(v === 'Cash on Delivery') info.innerHTML = `<strong>COD</strong>: Pay the driver upon delivery.`;
+    else info.innerHTML = `<strong>Cash Payment</strong>: Pay at store or pickup.`;
+  });
+
+  // Proof preview
+  $('ord_proof').addEventListener('change', (e)=>{
+    const f = e.target.files[0]; if(!f) return;
+    const r = new FileReader(); r.onload = ev => { $('ord_proof_preview').src = ev.target.result; $('ord_proof_preview').classList.remove('hidden'); }; r.readAsDataURL(f);
+  });
+
+  /* ============================
+     Preview -> Confirm -> Send
+     ============================ */
+  $('ord_preview').addEventListener('click', async ()=>{
+    const name = $('ord_name').value.trim() || 'Guest';
+    const email = $('ord_email').value.trim() || 'guest@demo';
+    const productVal = $('ord_product').value;
+    if(!productVal){ alert('Please select a product.'); return; }
+    const qty = Number($('ord_qty').value) || 1;
+    const cca = $('ord_cca').value || '—';
+    const address = $('ord_address').value.trim() || '—';
+    const payment = $('ord_payment').value || '—';
+    const [productName, priceStr] = productVal.split(' - ');
+    const price = Number(priceStr) || 0;
+    const total = qty * price;
+    const previewOrderId = 'ORD-' + Math.floor(Math.random()*900000+1000);
+
+    const html = `
+      <div>
+        <div><strong>Customer:</strong> ${name} • ${email}</div>
+        <div class="mt-2"><strong>Order ID:</strong> <span id="previewOrderId">${previewOrderId}</span></div>
+        <div class="mt-2"><strong>Product:</strong> ${productName}</div>
+        <div class="mt-1"><strong>Quantity:</strong> ${qty} bags</div>
+        <div class="mt-1"><strong>Unit Price:</strong> ₱${price.toLocaleString()}</div>
+        <div class="mt-1"><strong>Total:</strong> ₱${total.toLocaleString()}</div>
+        <div class="mt-1"><strong>CCA %:</strong> ${cca}%</div>
+        <div class="mt-1"><strong>Payment Method:</strong> ${payment}</div>
+        <div class="mt-1"><strong>Delivery Address:</strong> ${address}</div>
+      </div>
+    `;
+    $('confirmDetails').innerHTML = html;
+    $('confirmModal').classList.remove('hidden');
+  });
+
+  // Cancel confirm
+  $('confirmCancel').addEventListener('click', ()=> $('confirmModal').classList.add('hidden'));
+
+  // Confirm send
+  $('confirmSend').addEventListener('click', async ()=>{
+    // gather fields
+    const name = $('ord_name').value.trim() || 'Guest';
+    const email = $('ord_email').value.trim() || 'guest@demo';
+    const productVal = $('ord_product').value;
+    const qty = Number($('ord_qty').value) || 1;
+    const cca = $('ord_cca').value || '—';
+    const address = $('ord_address').value.trim() || '—';
+    const payment = $('ord_payment').value || '—';
+    const [productName, priceStr] = productVal.split(' - ');
+    const price = Number(priceStr) || 0;
+    const total = qty * price;
+    const orderId = document.getElementById('previewOrderId')?.textContent || ('ORD-'+Math.floor(Math.random()*900000+1000));
+
+    // params for email
+    const params = {
+      user_name: name,
+      user_email: email,
+      order_id: orderId,
+      product: productName,
+      qty: qty,
+      price: '₱' + price,
+      total: '₱' + total.toLocaleString(),
+      payment_method: payment,
+      address: address,
+      cca_percent: cca + '%'
+    };
+
+    // attach proof if exists
+    const file = $('ord_proof').files[0];
+    if(file){
+      params.attachment = await fileToDataURL(file);
+    }
+
+    // save order locally
+    const orderObj = { id: orderId, name, email, product: productName, qty, price, ccaPercent: cca, address, paymentMethod: payment, status:'Processing', created: Date.now() };
+    const arr = JSON.parse(localStorage.getItem('ecorn_orders')||'[]');
+    arr.unshift(orderObj);
+    localStorage.setItem('ecorn_orders', JSON.stringify(arr));
+    renderRecentOrders();
+    loadMyOrders();
+
+    // send emails
+    try{
+      if(!window.emailjs) throw new Error('EmailJS not loaded');
+      await emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, params);
+      await emailjs.send(SERVICE_ID, SELLER_TEMPLATE_ID, params);
+      $('confirmModal').classList.add('hidden');
+      $('successMessage').textContent = `Order ${orderId} submitted. A receipt has been sent to ${email}.`;
+      $('successModal').classList.remove('hidden');
+      $('orderModal').classList.add('hidden');
+    } catch(err){
+      console.error('email error', err);
+      alert('Order saved locally, but email failed. Check EmailJS config.');
+      $('confirmModal').classList.add('hidden');
+      $('successMessage').textContent = `Order ${orderId} saved locally. Email failed to send.`;
+      $('successModal').classList.remove('hidden');
+    }
+  });
+
+  // helper to convert file -> dataURL
+  function fileToDataURL(file){
+    return new Promise((resolve,reject)=>{
+      const reader = new FileReader();
+      reader.onload = ()=> resolve(reader.result);
+      reader.onerror = err => reject(err);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // success close
+  $('successClose')?.addEventListener('click', ()=> $('successModal').classList.add('hidden'));
+  // also close with button inside modal
+  $('successClose') && $('successClose').addEventListener('click', ()=> $('successModal').classList.add('hidden'));
+  document.getElementById('successClose')?.addEventListener('click', ()=> $('successModal').classList.add('hidden'));
+  // fallback: close button
+  document.querySelectorAll('#successClose, #successClose').forEach(el=>el?.addEventListener('click', ()=> $('successModal').classList.add('hidden')));
+
+  // Bulk quote
+  $('ord_bulk').addEventListener('click', ()=>{
+    const productVal = $('ord_product').value || 'Bulk Quote';
+    const qty = $('ord_qty').value || 1;
+    const quotes = JSON.parse(localStorage.getItem('ecorn_quotes')||'[]');
+    const q = { id: 'Q-'+Math.floor(Math.random()*900000+1000), product: productVal, qty, notes: $('ord_address').value || '', ts: Date.now() };
+    quotes.unshift(q);
+    localStorage.setItem('ecorn_quotes', JSON.stringify(quotes));
+    alert('Bulk quote request received. We will contact you shortly.');
+    $('orderModal').classList.add('hidden');
+  });
+
+  /* ============================
+     Recent / My Orders functionality
+     ============================ */
+
+  function renderRecentOrders(){
+    const list = document.getElementById('recentOrders');
+    if(!list) return;
+    const arr = JSON.parse(localStorage.getItem('ecorn_orders')||'[]');
+    list.innerHTML = '';
+    if(!arr.length){ list.innerHTML = '<div class="text-sm muted">No orders yet.</div>'; return; }
+    arr.slice(0,8).forEach(o=>{
+      const d = document.createElement('div');
+      d.className = 'p-3 border rounded-lg flex justify-between items-start';
+      d.innerHTML = `<div>
+        <div class="font-semibold">${o.product}</div>
+        <div class="text-xs muted">ID: ${o.id} • ${o.qty} bags • ₱${o.price} / bag</div>
+        <div class="text-xs muted mt-1">Placed: ${new Date(o.created).toLocaleString()}</div>
+      </div>
+      <div class="text-right">
+        <div class="${o.status==='Delivered'?'text-green-600':'text-yellow-600'} font-medium">${o.status}</div>
+        <div class="mt-3 flex flex-col gap-2">
+          <button class="px-3 py-1 rounded border text-sm" onclick="viewOrder('${o.id}')">View</button>
+          <button class="px-3 py-1 rounded border text-sm" onclick="openPrintable('${o.id}')">Receipt</button>
+        </div>
+      </div>`;
+      list.appendChild(d);
+    });
+  }
+
+  function loadMyOrders(){
+    const list = $('myOrdersList');
+    const arr = JSON.parse(localStorage.getItem('ecorn_orders')||'[]');
+    list.innerHTML = '';
+    if(!arr.length){ list.innerHTML = '<div class="text-sm muted">No orders placed from this browser yet.</div>'; return; }
+    arr.forEach(o=>{
+      const total = o.qty * o.price;
+      const el = document.createElement('div');
+      el.className = 'p-4 border rounded-lg bg-white shadow-sm flex justify-between items-center';
+      el.innerHTML = `
+        <div>
+          <div class="font-semibold brand-g">${o.product}</div>
+          <div class="text-sm muted">${o.qty} bags • ₱${o.price}/bag • Total ₱${total.toLocaleString()}</div>
+          <div class="text-xs muted mt-1">Placed: ${new Date(o.created).toLocaleString()}</div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <button class="px-3 py-1 bg-green-700 text-white rounded text-sm" onclick='openPrintable("${o.id}")'>View / Print</button>
+        </div>
+      `;
+      list.appendChild(el);
+    });
+  }
+
+  window.openPrintable = function(orderId){
+    const arr = JSON.parse(localStorage.getItem('ecorn_orders')||'[]');
+    const o = arr.find(x=>x.id === orderId);
+    if(!o) return alert('Order not found');
+    const total = o.qty * o.price;
+    const html = `
+      <!doctype html><html><head><meta charset="utf-8"><title>Receipt — ${o.id}</title>
+      <style>body{font-family:Arial;padding:24px;color:#111}.brand{color:${getComputedStyle(document.documentElement).getPropertyValue('--brand')||'#0f7a4a'};font-weight:700;font-size:20px}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{padding:8px 6px;border-bottom:1px solid #eee;text-align:left}.right{text-align:right}</style>
+      </head><body>
+      <div class="brand">ECORN Cement Manufacturing Corporation</div>
+      <div>Eco-Friendly and High-Quality Cement</div>
+      <div style="margin-top:8px">Order ID: <strong>${o.id}</strong></div>
+      <div>Customer: <strong>${o.name}</strong> • ${o.email}</div>
+      <div style="margin-top:10px">
+        <table>
+          <thead><tr><th>Item</th><th class="right">Qty</th><th class="right">Unit</th><th class="right">Total</th></tr></thead>
+          <tbody>
+            <tr><td>${o.product}</td><td class="right">${o.qty}</td><td class="right">₱${o.price.toLocaleString()}</td><td class="right">₱${total.toLocaleString()}</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="3" class="right"><strong>TOTAL</strong></td><td class="right"><strong>₱${total.toLocaleString()}</strong></td></tr></tfoot>
+        </table>
+      </div>
+      <div style="margin-top:12px">
+        <div>Payment Method: ${o.paymentMethod || '—'}</div>
+        <div>Delivery Address: ${o.address || '—'}</div>
+        <div style="margin-top:10px;color:#666">This receipt was generated by ECORN Cement.</div>
+      </div>
+      <div style="margin-top:18px"><button onclick="window.print()">Print</button></div>
+      </body></html>
+    `;
+    const w = window.open('', '_blank');
+    w.document.write(html);
+    w.document.close();
+  };
+
+  window.viewOrder = function(orderId){
+    const arr = JSON.parse(localStorage.getItem('ecorn_orders')||'[]');
+    const o = arr.find(x=>x.id === orderId);
+    if(!o) return alert('Not found');
+    openOrderModal();
+    $('ord_name').value = o.name;
+    $('ord_email').value = o.email;
+    for(let i=0;i<$('ord_product').options.length;i++){
+      if($('ord_product').options[i].value.includes(o.product)){ $('ord_product').selectedIndex = i; break; }
+    }
+    $('ord_qty').value = o.qty;
+    $('ord_cca').value = o.ccaPercent || 8;
+    $('ord_address').value = o.address || '';
+    $('ord_payment').value = o.paymentMethod || '';
+  };
+
+  // initial render
+  document.addEventListener('DOMContentLoaded', ()=>{
+    renderRecentOrders();
+    loadMyOrders();
+    toggleCCA();
+  });
+  </script>
+</body>
+</html>
+
